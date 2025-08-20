@@ -1,6 +1,7 @@
 #include "Bird.h"
 #include "raylib.h"
 #include "colors.h"
+#include <iostream>
 
 void Bird::draw()
 {
@@ -8,7 +9,24 @@ void Bird::draw()
 }
 
 void Bird::update()
-{
-  if (pos.y < 800 - height)
-    pos.y += 5.0f;
+{  
+  velocity += gravity;
+  pos.y += velocity;
+  
+  if (pos.y > 800 - height)
+    {
+      velocity = 0;
+      pos.y = 800 - height;
+    }
+  if (pos.y < 0)
+    {
+      velocity = 0;
+      pos.y = 0;
+    }
 }
+
+void Bird::up()
+{
+  velocity += -gravity * 10;
+}
+

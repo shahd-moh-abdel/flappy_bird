@@ -18,6 +18,10 @@ int main()
 
   while (!WindowShouldClose())
     {
+      if(IsKeyPressed(KEY_SPACE))
+	{
+	  bird.up();
+	}
       BeginDrawing();
       ClearBackground(MY_PINK);
       bird.update();
