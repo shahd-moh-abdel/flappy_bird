@@ -8,7 +8,7 @@ Pipe::Pipe() {
   bottom = GetRandomValue(0, 400);
   x = 450;
   width = 20;
-  speed = 1;
+  speed = 5;
 }
 
 void Pipe::draw()
