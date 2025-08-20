@@ -9,7 +9,7 @@ class Bird {
   int width;
   int height;
   Color color;
-  float gravity = 0.1;
+  float gravity = 0.3;
   float velocity = 0;
 
   void up();

@@ -29,4 +29,3 @@ void Bird::up()
 {
   velocity += -5;
 }
-
