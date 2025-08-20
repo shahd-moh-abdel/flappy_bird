@@ -3,28 +3,10 @@
 #include <raylib.h>
 #include <raymath.h>
 #include "colors.h"
+#include "Bird.h"
+
 #define SCREEN_WIDTH 450
 #define SCREEN_HEIGHT 800
-
-class Bird {
-public:
-  Vector2 pos;
-  int width;
-  int height;
-  Color color;
-
-  void draw()
-  {
-    DrawRectangle(pos.x, pos.y, width, height, color);
-  }
-  void update()
-  {
-    if (pos.y < SCREEN_HEIGHT - height)
-      {
-	  pos.y += 5.0f;
-      }
-  }
-};
 
 int main()
 {

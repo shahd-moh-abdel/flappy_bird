@@ -1,1 +1,2 @@
-g++ main.cpp -o app -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+echo "Comiling"
+g++ main.cpp Bird.cpp -o app -lm -lpthread -ldl -lrt -lX11 -lraylib -lGL
