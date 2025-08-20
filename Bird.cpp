@@ -27,6 +27,6 @@ void Bird::update()
 
 void Bird::up()
 {
-  velocity += -gravity * 10;
+  velocity += -5;
 }
 
