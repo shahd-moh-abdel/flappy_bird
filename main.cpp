@@ -1,9 +1,9 @@
 #include <iostream>
 #include <raylib.h>
 #include <raymath.h>
-#define SCREEN_WIDTH 400
+#include "colors.h"
+#define SCREEN_WIDTH 450
 #define SCREEN_HEIGHT 800
-#define MY_PINK (Color) {255, 197, 232, 255}
 
 int main()
 {
