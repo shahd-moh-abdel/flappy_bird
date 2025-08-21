@@ -3,9 +3,19 @@
 #include <ostream>
 #include "colors.h"
 #include "raylib.h"
+
+static int lastGapY = 300;
+int gapSize = 200;
+
 Pipe::Pipe() {
-  top = GetRandomValue(0, 400);
-  bottom = GetRandomValue(0, 400);
+  int delta = GetRandomValue(-100, 100);
+  lastGapY += delta;
+
+  if (lastGapY < 100) lastGapY = 100;
+  if (lastGapY > 700 - gapSize) lastGapY = 700 - gapSize;
+  
+  top = lastGapY - gapSize/2;
+  bottom = 800 - (lastGapY + gapSize/2) ;
   x = 450;
   width = 20;
   speed = 5;

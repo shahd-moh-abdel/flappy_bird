@@ -34,19 +34,32 @@ int main()
 
   while (!WindowShouldClose())
     {
-      if(IsKeyPressed(KEY_SPACE))
+      if (IsKeyPressed(KEY_SPACE))
 	{
 	  bird.up();
 	}
+      if (IsKeyPressed(KEY_R))
+	{
+	  //restart game 
+	  bird = {(Vector2){200, 375}, 50, 50, MY_DARK_BLUE};
+	  for (int i = 0; i < PIPE_COUNT; i++)
+	    {
+	      pipes[i] = Pipe();
+	      pipes[i].x = SCREEN_WIDTH + i * 200;
+	    }
+	  gameState.score = 0;
+	  gameState.gameover = false;
+	}
       BeginDrawing();
       ClearBackground(MY_PINK);
-      if (!gameState.gameover) bird.update();
+      
+      if (!gameState.gameover) bird.update();//only update pos !gameover
       bird.draw();
       for (int i = 0; i < PIPE_COUNT; i++)
 	{  
 	  pipes[i].draw();
 	  if (!gameState.gameover ) pipes[i].update();
-	  if(pipes[i].hits(bird))
+	  if(pipes[i].hits(bird) && !gameState.gameover)
 	    {
 	      gameState.gameover = true;
 	    } 
@@ -72,7 +85,8 @@ int main()
       if(gameState.gameover)
 	{
 	  DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, (Color){0, 0, 0, 180});
-	  DrawText("GAME OVER", SCREEN_WIDTH/2 - 100, SCREEN_HEIGHT/2, 30, MAROON);
+	  DrawText("GAME OVER", SCREEN_WIDTH/2 - 150, SCREEN_HEIGHT/2, 50, MAROON);
+	  DrawText("Press R to restart", SCREEN_WIDTH/2 - 100, SCREEN_HEIGHT/2 + 50, 20, WHITE);
 	}
       EndDrawing();
     }
