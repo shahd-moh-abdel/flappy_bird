@@ -21,3 +21,16 @@ void Pipe::update()
 {
   x -= speed;
 }
+
+void Pipe::hits(Bird bird)
+{
+  Rectangle birdRec =
+    {bird.pos.x, bird.pos.y, (float)bird.width, (float)bird.height};
+  Rectangle topRec =
+    {(float)x, 0, (float)width, (float)top};
+  Rectangle bottomRect =
+    {(float)x, 800 - (float)bottom, (float)width, (float)bottom };
+
+  if(CheckCollisionRecs(topRec, birdRec) || CheckCollisionRecs(bottomRect, birdRec))
+    std::cout<<"COL" << std::endl;
+}

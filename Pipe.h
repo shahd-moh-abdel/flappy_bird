@@ -2,6 +2,7 @@
 #define PIPE_H
 
 #include "raylib.h"
+#include "Bird.h"
 
 class Pipe {
  public:
@@ -15,6 +16,7 @@ class Pipe {
 
   void draw();
   void update();
+  void hits(Bird bird);
 };
 
 #endif

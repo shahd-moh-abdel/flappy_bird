@@ -39,16 +39,10 @@ int main()
 	{  
 	  pipes[i].draw();
 	  pipes[i].update();
-
-	  Rectangle birdRec = {bird.pos.x, bird.pos.y, (float)bird.width, (float)bird.height};
-
-	  Rectangle topRec = {(float)pipes[i].x, 0, (float)pipes[i].width, (float)pipes[i].top};
-
-	  Rectangle bottomRec = {(float)pipes[i].x, (float)SCREEN_HEIGHT - pipes[i].bottom, (float)pipes[i].width, (float)pipes[i].bottom};
-
-	  if(CheckCollisionRecs(topRec, birdRec) || CheckCollisionRecs(bottomRec, birdRec))
-	    std::cout << "col\n";
+	  pipes[i].hits(bird);
 	}
+
+      //draw game stats
       EndDrawing();
     }
   CloseWindow();
