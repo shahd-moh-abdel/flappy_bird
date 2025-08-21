@@ -10,16 +10,23 @@
 #define SCREEN_HEIGHT 800
 #define PIPE_COUNT 3
 
+typedef struct {
+  int score = 0;
+  bool gameover = false;
+} GameState;
+
 int main()
 {
   Bird bird = {(Vector2){200, 375}, 50, 50, MY_DARK_BLUE};
   Pipe pipes[PIPE_COUNT];
+  GameState gameState;
 
   for (int i = 0; i < PIPE_COUNT; i++)
     {
       pipes[i] = Pipe();
       pipes[i].x = SCREEN_WIDTH + i * 200;
     }
+
 
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "flappy bird");
 
@@ -33,13 +40,16 @@ int main()
 	}
       BeginDrawing();
       ClearBackground(MY_PINK);
-      bird.update();
+      if (!gameState.gameover) bird.update();
       bird.draw();
       for (int i = 0; i < PIPE_COUNT; i++)
 	{  
 	  pipes[i].draw();
-	  pipes[i].update();
-	  pipes[i].hits(bird);
+	  if (!gameState.gameover ) pipes[i].update();
+	  if(pipes[i].hits(bird))
+	    {
+	      gameState.gameover = true;
+	    } 
 
 	  //check if pipe offscreen
 	  if(pipes[i].x + pipes[i].width < 0)
@@ -47,9 +57,23 @@ int main()
 	      pipes[i] = Pipe();
 	      pipes[i].x = SCREEN_WIDTH + 200;
 	    }
+
+	  //update score
+	  if(!pipes[i].passed && pipes[i].x + pipes[i].width < bird.pos.x)
+	    {
+	      gameState.score++;
+	      std::cout << gameState.score << std::endl;
+	      pipes[i].passed = true;
+	    }
 	}
 
       //draw game stats
+      DrawText(TextFormat("SCORE: %i", gameState.score), 10, 10, 30, MY_DARK_BROWN);
+      if(gameState.gameover)
+	{
+	  DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, (Color){0, 0, 0, 180});
+	  DrawText("GAME OVER", SCREEN_WIDTH/2 - 100, SCREEN_HEIGHT/2, 30, MAROON);
+	}
       EndDrawing();
     }
   CloseWindow();

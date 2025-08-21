@@ -9,6 +9,7 @@ Pipe::Pipe() {
   x = 450;
   width = 20;
   speed = 5;
+  passed = false;
 }
 
 void Pipe::draw()
@@ -22,7 +23,7 @@ void Pipe::update()
   x -= speed;
 }
 
-void Pipe::hits(Bird bird)
+bool Pipe::hits(Bird bird)
 {
   Rectangle birdRec =
     {bird.pos.x, bird.pos.y, (float)bird.width, (float)bird.height};
@@ -32,5 +33,9 @@ void Pipe::hits(Bird bird)
     {(float)x, 800 - (float)bottom, (float)width, (float)bottom };
 
   if(CheckCollisionRecs(topRec, birdRec) || CheckCollisionRecs(bottomRect, birdRec))
-    std::cout<<"COL" << std::endl;
+    {
+      return true;
+    }
+
+  return false;
 }

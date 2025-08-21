@@ -11,12 +11,13 @@ class Pipe {
   int x;
   int width;
   int speed;
+  bool passed;
 
   Pipe();
 
   void draw();
   void update();
-  void hits(Bird bird);
+  bool hits(Bird bird);
 };
 
 #endif
