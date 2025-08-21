@@ -17,7 +17,10 @@ typedef struct {
 
 int main()
 {
+  InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "flappy bird");
+  
   Bird bird = {(Vector2){200, 375}, 50, 50, MY_DARK_BLUE};
+  bird.initSprites();
   Pipe pipes[PIPE_COUNT];
   GameState gameState;
 
@@ -26,9 +29,6 @@ int main()
       pipes[i] = Pipe();
       pipes[i].x = SCREEN_WIDTH + i * 200;
     }
-
-
-  InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "flappy bird");
 
   SetTargetFPS(60);
 
@@ -42,6 +42,7 @@ int main()
 	{
 	  //restart game 
 	  bird = {(Vector2){200, 375}, 50, 50, MY_DARK_BLUE};
+	  bird.initSprites();
 	  for (int i = 0; i < PIPE_COUNT; i++)
 	    {
 	      pipes[i] = Pipe();
