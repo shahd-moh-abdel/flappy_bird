@@ -39,15 +39,15 @@ void Pipe::draw()
 {
   if (pipeTexture.id > 0)
     {
-      Rectangle sourceRec = {0, 0, (float)pipeTexture.width, (float)pipeTexture.height};
+      Rectangle sourceRec = {0, (float)(pipeTexture.height - top), (float)pipeTexture.width, (float)top};
       Rectangle destRec = {(float)x, 0, (float)width, (float)top};
       Vector2 origin = {0, 0};
-
       DrawTexturePro(pipeTexture, sourceRec, destRec, origin, 0.0f, WHITE);
 
-      sourceRec = {0, 0, (float)pipeTexture.width, -(float)pipeTexture.height};
-      destRec = {(float)x, 800 - (float)bottom, (float)width, (float)bottom};
-      DrawTexturePro(pipeTexture, sourceRec, destRec, origin, 0.0f, WHITE);
+      Rectangle bottomSourceRec = {0, 0, (float)pipeTexture.width, (float)bottom};
+      Rectangle bottomDestRec = {(float)x, (float)(800 - bottom), (float)width, (float)bottom};
+      bottomSourceRec.height = -(float)bottom;
+      DrawTexturePro(pipeTexture, bottomSourceRec, bottomDestRec, origin, 0.0f, WHITE);
     }
   else
     {
