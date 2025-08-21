@@ -8,7 +8,7 @@
 
 #define SCREEN_WIDTH 450
 #define SCREEN_HEIGHT 800
-#define PIPE_COUNT 30
+#define PIPE_COUNT 3
 
 int main()
 {
@@ -40,6 +40,13 @@ int main()
 	  pipes[i].draw();
 	  pipes[i].update();
 	  pipes[i].hits(bird);
+
+	  //check if pipe offscreen
+	  if(pipes[i].x + pipes[i].width < 0)
+	    {
+	      pipes[i] = Pipe();
+	      pipes[i].x = SCREEN_WIDTH + 200;
+	    }
 	}
 
       //draw game stats
