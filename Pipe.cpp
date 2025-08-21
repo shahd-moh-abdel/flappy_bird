@@ -7,6 +7,18 @@
 static int lastGapY = 300;
 int gapSize = 200;
 
+Texture2D Pipe::pipeTexture = {0};
+
+void Pipe::loadTexture()
+{
+  pipeTexture = LoadTexture("./assets/pipe/pipe.png");
+}
+
+void Pipe::unloadTexture()
+{
+  UnloadTexture(pipeTexture);
+}
+
 Pipe::Pipe() {
   int delta = GetRandomValue(-100, 100);
   lastGapY += delta;
@@ -16,16 +28,32 @@ Pipe::Pipe() {
   
   top = lastGapY - gapSize/2;
   bottom = 800 - (lastGapY + gapSize/2) ;
+  
   x = 450;
-  width = 20;
+  width = 60;
   speed = 5;
   passed = false;
 }
 
 void Pipe::draw()
 {
-  DrawRectangle(x, 0, width, top, MY_SOFT_VIOLET);
-  DrawRectangle(x, 800 - bottom, width, bottom, MY_SOFT_VIOLET);
+  if (pipeTexture.id > 0)
+    {
+      Rectangle sourceRec = {0, 0, (float)pipeTexture.width, (float)pipeTexture.height};
+      Rectangle destRec = {(float)x, 0, (float)width, (float)top};
+      Vector2 origin = {0, 0};
+
+      DrawTexturePro(pipeTexture, sourceRec, destRec, origin, 0.0f, WHITE);
+
+      sourceRec = {0, 0, (float)pipeTexture.width, -(float)pipeTexture.height};
+      destRec = {(float)x, 800 - (float)bottom, (float)width, (float)bottom};
+      DrawTexturePro(pipeTexture, sourceRec, destRec, origin, 0.0f, WHITE);
+    }
+  else
+    {
+      DrawRectangle(x, 0, width, top, MY_SOFT_VIOLET);
+      DrawRectangle(x, 800 - bottom, width, bottom, MY_SOFT_VIOLET);
+    }
 }
 
 void Pipe::update()

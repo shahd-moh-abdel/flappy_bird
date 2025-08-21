@@ -12,9 +12,12 @@ class Pipe {
   int width;
   int speed;
   bool passed;
+  static Texture2D pipeTexture;
 
   Pipe();
 
+  void loadTexture();
+  void unloadTexture();
   void draw();
   void update();
   bool hits(Bird bird);

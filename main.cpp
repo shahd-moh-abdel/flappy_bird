@@ -28,6 +28,7 @@ int main()
     {
       pipes[i] = Pipe();
       pipes[i].x = SCREEN_WIDTH + i * 200;
+      pipes[i].loadTexture();
     }
 
   SetTargetFPS(60);
