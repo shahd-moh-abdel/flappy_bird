@@ -64,7 +64,7 @@ void Pipe::update()
 bool Pipe::hits(Bird bird)
 {
   Rectangle birdRec =
-    {bird.pos.x, bird.pos.y, (float)bird.width, (float)bird.height};
+    {bird.pos.x + 10, bird.pos.y + 10, (float)bird.width - 15, (float)bird.height -17};
   Rectangle topRec =
     {(float)x, 0, (float)width, (float)top};
   Rectangle bottomRect =

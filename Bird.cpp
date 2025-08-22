@@ -13,7 +13,6 @@ void Bird::initSprites()
 
 void Bird::draw()
 {
-  DrawRectangleLines(pos.x, pos.y, width, height, color);
   DrawTexturePro(frames[currentFrame],
 		 {0, 0, (float)frames[currentFrame].width, (float)frames[currentFrame].height},
 		 {pos.x, pos.y, (float)width, (float)height},
