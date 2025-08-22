@@ -46,7 +46,7 @@ void Pipe::draw()
 
       Rectangle bottomSourceRec = {0, 0, (float)pipeTexture.width, (float)bottom};
       Rectangle bottomDestRec = {(float)x, (float)(800 - bottom), (float)width, (float)bottom};
-      bottomSourceRec.height = -(float)bottom;
+      bottomSourceRec.height = (float)bottom;
       DrawTexturePro(pipeTexture, bottomSourceRec, bottomDestRec, origin, 0.0f, WHITE);
     }
   else
